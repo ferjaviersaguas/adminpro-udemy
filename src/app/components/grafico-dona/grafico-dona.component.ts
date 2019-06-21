@@ -1,0 +1,30 @@
+import { Component, OnInit, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-grafico-dona',
+  templateUrl: './grafico-dona.component.html',
+  styleUrls: ['./grafico-dona.component.css']
+})
+export class GraficoDonaComponent implements OnInit {
+
+  // Doughnut
+  @Input('chartLabels') public doughnutChartLabels: string[] = [];
+  @Input('chartData') public doughnutChartData: number[] = [];
+  @Input('chartType') public doughnutChartType: string = '';
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+   // events
+   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
+    console.log(event, active);
+  }
+
+  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
+    console.log(event, active);
+  }
+
+
+}
