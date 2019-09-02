@@ -51,6 +51,7 @@ export class ProfileComponent implements OnInit {
       return;
     }
 
+    //Preview de imagen
     this.imagenSubir = archivo;
 
     let reader = new FileReader();

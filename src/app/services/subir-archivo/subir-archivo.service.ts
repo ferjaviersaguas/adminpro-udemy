@@ -37,4 +37,5 @@ export class SubirArchivoService {
       xhr.send( formData );
     });
   }
+  
 }

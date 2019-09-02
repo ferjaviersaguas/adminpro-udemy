@@ -17,7 +17,7 @@ token: string;
 
 
   constructor(public http: HttpClient, public router: Router, public _subirArchivoService: SubirArchivoService) {
-    console.log("Servicio usuario listo");
+    // console.log("Servicio usuario listo");
     this.cargarStorage();
   }
 
@@ -110,16 +110,19 @@ token: string;
     
     let url = URL_SERVICIOS + '/usuario/' + usuario._id;
     url += '?token=' + this.token;
-    console.log(url);
+    // console.log(url);
 
     return this.http.put( url, usuario)
     .pipe(
   
     map((res: any) => {
-      // this.usuario = res.usuario;
-      let usuarioDB: Usuario = res.usuario;
-      this.guardarStorage( usuarioDB._id, this.token, usuarioDB);
-      // Swal('Usuario actualizado', usuario.nombre, 'success');
+
+  if( usuario._id === this.usuario._id){
+    
+          let usuarioDB: Usuario = res.usuario;
+          this.guardarStorage( usuarioDB._id, this.token, usuarioDB);
+
+  }
       Swal.fire('Usuario actualizado', usuario.nombre, 'success');
       return true;
     })
@@ -135,11 +138,33 @@ token: string;
         Swal.fire('Imagen actualizado', this.usuario.nombre, 'success');
         this.guardarStorage( id, this.token, this.usuario);
 
-        console.log( res );
+        // console.log( res );
       })
       .catch( res => {
-        console.log( res );
+        // console.log( res );
       });
       
+  }
+
+  cargarUsuarios( desde: number = 0 ){
+    
+    let url = URL_SERVICIOS + '/usuario?desde=' + desde;
+    return this.http.get( url );
+
+  }
+
+  buscarUsuarios( termino: string ){
+    
+    let url = URL_SERVICIOS + '/busqueda/especifico/usuarios/' + termino;
+    return this.http.get( url )
+                    .pipe(map( (res:any) => res.usuarios ))
+  }
+
+  borrarUsuario( id: string ){
+    let url = URL_SERVICIOS + '/usuario/' + id + '?token=' + this.token;
+    return this.http.delete( url )
+                    .pipe(map(res =>{
+                      Swal.fire('Usuario borrado', 'El usuario ha sido eliminado con éxito', 'success');
+                    }))
   }
 }
