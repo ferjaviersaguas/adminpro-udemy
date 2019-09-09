@@ -38,7 +38,7 @@ token: string;
     
     if( localStorage.getItem('token')){
       this.token = localStorage.getItem('token');
-      this.usuario = JSON.parse( localStorage.getItem('usuario'));
+      this.usuario = JSON.parse( localStorage.getItem('usuario') || '{}');
     }
     else{
       this.token = '';
@@ -120,7 +120,7 @@ token: string;
   if( usuario._id === this.usuario._id){
     
           let usuarioDB: Usuario = res.usuario;
-          this.guardarStorage( usuarioDB._id, this.token, usuarioDB);
+          this.guardarStorage( usuarioDB._id, this.token, this.usuario);
 
   }
       Swal.fire('Usuario actualizado', usuario.nombre, 'success');

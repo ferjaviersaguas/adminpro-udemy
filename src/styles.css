@@ -30,3 +30,54 @@
     opacity: 0.5;
     filter: alpha(opacity=50);
 }
+
+.op:hover {
+    background-color: grey;
+    opacity: 0.2;
+}
+
+.border-circulo {
+    border-radius: 50%;
+}
+
+.contenido {
+    position: relative;
+    cursor: pointer;
+}
+
+.imagen-perfil {
+    display: block;
+    width: 25%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 80%;
+    opacity: 0;
+    transition: .3s ease;
+    background-color: grey;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.contenido:hover .overlay {
+    opacity: 0.8;
+}
+
+.icono {
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
