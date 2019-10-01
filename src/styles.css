@@ -22,6 +22,14 @@
     z-index: 9999;
 }
 
+
+/* Iconos */
+
+.fa-editar:hover {
+    color: #93cf93;
+    cursor: pointer;
+}
+
 .oculto {
     display: none;
 }
@@ -33,7 +41,7 @@
 
 .op:hover {
     background-color: grey;
-    opacity: 0.2;
+    opacity: 0.5;
 }
 
 .border-circulo {

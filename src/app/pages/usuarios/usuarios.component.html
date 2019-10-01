@@ -10,7 +10,7 @@
     </div>
 
 
-    <div class="col-sm-12" *ngIf="cargando" style="margin-top:30%">
+    <div class="col-sm-12" *ngIf="cargando">
         <div class="alert alert-warning text-center">
             <strong>Cargando</strong>
             <br>
@@ -46,7 +46,7 @@
                             <!-- <td><img (click)="mostrarModal( usuario._id )" src="{{ usuario.img | imagen }}" class="w75 imagen-hover" style="border-radius: 50%;cursor:pointer"> </td> -->
                             <td class="contenido">
 
-                                <img [src]="usuario.img | imagen" class="w75 border-circulo">
+                                <img [src]="usuario.img | imagen: 'usuario'" class="w75 border-circulo">
                                 <div class="overlay" (click)="mostrarModal( usuario._id )">
                                     <a class="icono" title="Cambiar Foto">
                                         <i class="fa fa-camera" style="color:rgb(230, 230, 230)" aria-hidden="true"></i>
@@ -82,13 +82,12 @@
             </div>
             <ng-template #sinResultados>
                 <div class="col-sm-12">
-                    <div class="success text-center">
+                    <div class="text-center">
                         <h3>
                             <strong>Sin Resultados</strong>
                         </h3>
                         <img src="../../../assets/images/sinResultados.png" alt="">
                         <br>
-
                         <br>
 
                     </div>

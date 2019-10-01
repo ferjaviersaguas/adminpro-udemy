@@ -1,0 +1,97 @@
+<div class="row fadeIn animated">
+    <div class="col-sm-12">
+        <div class="card>">
+            <div class="card-body">
+
+                <input #input (keyup)="buscarMedico( input.value )" type="text" class="form-control" placeholder="Buscar medicos...">
+            </div>
+        </div>
+    </div>
+
+    <!-- <div *ngIf="cargando" class="col-sm-12" style="">
+      <div class="alert alert-warning text-center">
+          <strong>Cargando</strong>
+          <br>
+          <i class="fa fa-refresh fa-spin fa-2x" aria-hidden="true"></i>
+          <br>
+          <span>Espere por favor...</span>
+      </div>
+  </div> -->
+</div>
+
+<div class="fadeIn animated">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <!-- *ngIf="medicos.length !== 0; else sinResultados" -->
+
+
+                <div style="display: flex;justify-content:flex-end;">
+                    <div [routerLink]="['/medico','nuevo']" class="btn btn-info" style="border-radius: 50px 50px;"><i class="fa fa-plus-circle" style="font-size:16px"></i> Crear Medico</div>
+                </div>
+                <div *ngIf="medicos.length !== 0; else sinResultados">
+                    <h3 class="card-title">Medicos registrados ( <small>{{ totalRegistros }}</small> )</h3>
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th></th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let medico of medicos">
+
+                                <td>
+                                    <img (click)="actualizarImagen( medico )" src="{{ medico.img | imagen:'medico' }}" class="w75 contenido op border-circulo">
+                                </td>
+                                <td>
+                                    <input class="form-control" [(ngModel)]="medico.nombre" type="text" value="{{ medico.nombre }}">
+                                    <hr>
+                                    <!-- <img src="{{ medico.hospital.img | imagen:'hospital' }}" class="w75" style="float:left" alt=""> -->
+                                    <h6 *ngIf="medico.hospital"><strong> Trabaja en:</strong> {{ medico.hospital.nombre }}</h6>
+                                    <h6 *ngIf="!medico.hospital"><strong> No tiene hospital asignado</strong></h6>
+
+
+                                </td>
+
+
+                                <td>
+                                    <button class="btn btn-success" [routerLink]="['/medico', medico._id]"> <i class="fa fa-edit" aria-hidden="true"></i> </button>
+                                    <button class="btn btn-danger" (click)="borrarMedicos( medico )"> <i class="fa fa-trash" aria-hidden="true"></i> </button>
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+
+                    <div align="center">
+                        <button (click)="cambiarDesde(-5)" class="btn btn-secondary"><i class='fas fa-angle-left' style='font-size:24px'></i>Anterior</button>
+                        <button (click)="cambiarDesde(+5)" class="btn btn-secondary">Siguiente<i class='fas fa-angle-right' style='font-size:24px'></i></button>
+                    </div>
+                </div>
+                <ng-template #sinResultados>
+
+                    <div class="col-sm-12 animated fadeIn">
+                        <div class="text-center">
+                            <h3>
+                                <strong>Sin Resultados</strong>
+                            </h3>
+                            <img src="../../../assets/images/sinResultados.png" alt="">
+                            <br>
+                            <br>
+
+                        </div>
+                    </div>
+
+                </ng-template>
+
+            </div>
+        </div>
+    </div>
+</div>
