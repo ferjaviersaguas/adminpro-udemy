@@ -60,7 +60,10 @@ hospital: Hospital = new Hospital('');
 
       this.medico._id = medico._id
       this.router.navigate( ['/medico', medico._id] );
-    });
+    }), err =>{
+
+    }
+    ;
   }
 
   cambioHospital( id: string ){
