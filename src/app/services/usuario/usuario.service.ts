@@ -30,6 +30,29 @@ export class UsuarioService {
     this.cargarStorage();
   }
 
+  renuevaToken(){
+    // http://localhost:3000/login/renuevatoken?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7InJvbGUiOiJBRE1JTl9ST0xFIiwiZ29vZ2xlIjpmYWxzZSwiX2lkIjoiNWQ5MzQ4OWRhZDkwMjczNTUwMDhhOWUzIiwibm9tYnJlIjoiVXN1YXJpbyA0IiwiZW1haWwiOiJ1c3VhcmlvNEB1c3VhcmlvNC5jb20iLCJwYXNzd29yZCI6IjstKSIsIl9fdiI6MH0sImlhdCI6MTU3MDQ1NjkyNywiZXhwIjoxNTcwNDcxMzI3fQ.9omsl7uXFtB6bvrBVZwUpjtpH_87YwuiQAlNsQ2lswg
+    let url = URL_SERVICIOS + '/login/renuevatoken?token=' + this.token;
+
+
+    return this.http.get( url ).pipe( map( (res:any) =>{
+      this.token = res.token;
+      localStorage.setItem('token', this.token);
+      console.log('Token renovado');
+
+      return true;
+    }),
+    catchError(err => {
+      console.log(err.status);
+      // throwError(err)
+      this.router.navigate(['/login']);
+      Swal.fire("No se pudo renovar token", err.error.mensaje, "error");
+      return Observable.throw(err);
+    })
+    )
+    
+  }
+
   logout() {
     this.usuario = null;
     this.token = "";

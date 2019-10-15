@@ -16,6 +16,8 @@ import { RegisterComponent } from './login/register.component';
 
 //SERVICIOS
 import { ServicesModule } from './services/services.module';
+import { PagesComponent } from './pages/pages.component';
+import { SharedModule } from './shared/shared.module';
 
 
 
@@ -23,15 +25,17 @@ import { ServicesModule } from './services/services.module';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PagesComponent
   ],
   imports: [
     BrowserModule,
     APP_ROUTES,
-    PagesModule,
+    // PagesModule,
     FormsModule,
     ReactiveFormsModule,
-    ServicesModule
+    ServicesModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

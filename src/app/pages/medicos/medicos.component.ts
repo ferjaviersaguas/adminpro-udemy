@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 
-import { MedicoService } from "src/app/services/services.index";
+import { MedicoService, ModalUploadService } from "src/app/services/services.index";
 import { Hospital } from "src/app/models/hospital.model";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { Medico } from 'src/app/models/medico.model';
@@ -17,7 +17,7 @@ export class MedicosComponent implements OnInit {
   hospitales: Hospital;
   desde: number = 0;
 
-  constructor(public _medicoService: MedicoService) {}
+  constructor(public _medicoService: MedicoService, public _modalUploadService: ModalUploadService) {}
 
   ngOnInit() {
     this.cargarMedicos();
@@ -80,4 +80,8 @@ export class MedicosComponent implements OnInit {
       }
     });
   }
+
+  actualizarImagen( medicos: Medico ){
+    this._modalUploadService.mostrarModal( 'medicos', medicos._id);
+}
 }

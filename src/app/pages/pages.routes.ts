@@ -6,7 +6,7 @@ import { Graficas1Component } from './graficas1/graficas1.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
-import { LoginGuardGuard, AdminGuard } from '../services/services.index';
+import { LoginGuardGuard, AdminGuard, VerificaTokenGuard } from '../services/services.index';
 import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
@@ -17,12 +17,9 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
 
 
 const pagesroutes: Routes =[
-    {
-        path: '',
-        component: PagesComponent,
-        canActivate: [ LoginGuardGuard ],
-        children: [
-            { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard'} },
+    
+    
+            { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard'}, canActivate: [ VerificaTokenGuard] },
             { path: 'progress', component: ProgressComponent, data: { titulo: 'Progress'} },
             { path: 'graficas1', component: Graficas1Component, data: { titulo: 'Graficas'} },
             { path: 'promesas', component: PromesasComponent, data: { titulo: 'Promesas'} },
@@ -39,8 +36,8 @@ const pagesroutes: Routes =[
 
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 
-        ]
-    },
-]
+        
+    
+];
 
 export const PAGES_ROUTES = RouterModule.forChild( pagesroutes );
